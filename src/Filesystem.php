@@ -13,7 +13,7 @@ trait Filesystem
      *
      * @return bool
      */
-    public function exists($path)
+    public function exists($path): bool
     {
         return file_exists($path);
     }
@@ -26,7 +26,7 @@ trait Filesystem
      *
      * @return bool
      */
-    public function createFile($path, $contents = '', $lock = false)
+    public function createFile($path, $contents = '', $lock = false): bool
     {
         $this->createDirectory(dirname($path));
 
@@ -43,7 +43,7 @@ trait Filesystem
      *
      * @return bool
      */
-    public function createDirectory($path, $mode = 0755, $recursive = true, $force = true)
+    public function createDirectory($path, $mode = 0755, $recursive = true, $force = true): bool
     {
         if ($force) {
             return @mkdir($path, $mode, $recursive);
@@ -59,14 +59,14 @@ trait Filesystem
      *
      * @return bool
      */
-    public function delete($path)
+    public function delete($path): bool
     {
         $filesystem = new SymfonyFilesystem();
 
         $filesystem->remove($path);
     }
 
-    public function rename($path, $name)
+    public function rename($path, $name): bool
     {
         $filesystem = new SymfonyFilesystem();
 

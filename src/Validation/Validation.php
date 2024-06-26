@@ -2,6 +2,9 @@
 
 namespace Lucid\Validation;
 
+use Illuminate\Validation\Factory;
+use Illuminate\Validation\Validator;
+
 /**
  * Validation factory.
  */
@@ -17,7 +20,7 @@ class Validation
      *
      * @return \Illuminate\Validation\Validator
      */
-    public function make(array $data, array $rules, array $messages = [], array $customAttributes = [])
+    public function make(array $data, array $rules, array $messages = [], array $customAttributes = []): Validator
     {
         return $this->getValidationFactory()->make($data, $rules, $messages, $customAttributes);
     }
@@ -27,7 +30,7 @@ class Validation
      *
      * @return \Illuminate\Validation\Factory
      */
-    public function getValidationFactory()
+    public function getValidationFactory(): Factory
     {
         return app(\Illuminate\Contracts\Validation\Factory::class);
     }

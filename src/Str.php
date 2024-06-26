@@ -12,7 +12,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function studly($value)
+    public static function studly($value): string
     {
         return LaravelStr::studly($value);
     }
@@ -24,7 +24,7 @@ class Str
      * @param  string  $delimiter
      * @return string
      */
-    public static function snake($value, $delimiter = '_')
+    public static function snake($value, $delimiter = '_'): string
     {
         return LaravelStr::snake($value, $delimiter);
     }
@@ -40,7 +40,7 @@ class Str
      *
      * @return string
      */
-    public static function realName($name, $pattern = '//')
+    public static function realName($name, $pattern = '//'): string
     {
         $name = preg_replace($pattern, '', $name);
 
@@ -58,7 +58,7 @@ class Str
      *
      * @return string
      */
-    public static function feature($name)
+    public static function feature($name): string
     {
         $parts = array_map(function($part) { return self::studly($part); }, explode("/", $name));
         $feature  = self::studly(preg_replace('/Feature(\.php)?$/', '', array_pop($parts)).'Feature');
@@ -79,7 +79,7 @@ class Str
      *
      * @return string
      */
-    public static function job($name)
+    public static function job($name): string
     {
         return self::studly(preg_replace('/Job(\.php)?$/', '', $name).'Job');
     }
@@ -95,7 +95,7 @@ class Str
      *
      * @return string
      */
-    public static function operation($name)
+    public static function operation($name): string
     {
         return self::studly(preg_replace('/Operation(\.php)?$/', '', $name).'Operation');
     }
@@ -109,7 +109,7 @@ class Str
      *
      * @return string
      */
-    public static function domain($name)
+    public static function domain($name): string
     {
         return self::studly($name);
     }
@@ -121,7 +121,7 @@ class Str
      *
      * @return string
      */
-    public static function service($name)
+    public static function service($name): string
     {
         return self::studly($name);
     }
@@ -133,7 +133,7 @@ class Str
      *
      * @return string
      */
-    public static function controller($name)
+    public static function controller($name): string
     {
         return self::studly(preg_replace('/Controller(\.php)?$/', '', $name).'Controller');
     }
@@ -147,7 +147,7 @@ class Str
      *
      * @return string
      */
-    public static function model($name)
+    public static function model($name): string
     {
         return self::studly($name);
     }
@@ -158,7 +158,7 @@ class Str
      * @param $name
      * @return string
      */
-    public static function policy($name)
+    public static function policy($name): string
     {
         return self::studly(preg_replace('/Policy(\.php)?$/', '', $name) . 'Policy');
     }
@@ -169,7 +169,7 @@ class Str
      * @param $name
      * @return string
      */
-    public static function request($name)
+    public static function request($name): string
     {
         return self::studly($name);
     }

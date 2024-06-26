@@ -3,30 +3,27 @@
 namespace Lucid\Domains\Http\Jobs;
 
 use Lucid\Units\Job;
+use Illuminate\Support\Arr;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\ResponseFactory;
 
 class RespondWithJsonJob extends Job
 {
-    protected $status;
-    protected $content;
-    protected $headers;
-    protected $options;
-
-    public function __construct($content, $status = 200, array $headers = [], $options = 0)
-    {
-        $this->content = $content;
-        $this->status = $status;
-        $this->headers = $headers;
-        $this->options = $options;
+    public function __construct(
+        private readonly string $message = 'Ok',
+        private readonly array $result = [],
+        private readonly int $status = 200,
+        private readonly array $headers = [],
+        private readonly int $options = 0
+    ) {
     }
 
-    public function handle(ResponseFactory $factory)
+    public function handle(ResponseFactory $factory): JsonResponse
     {
-        $response = [
-            'data' => $this->content,
-            'status' => $this->status,
-        ];
-
-        return $factory->json($response, $this->status, $this->headers, $this->options);
+        return $factory->json(Arr::whereNotNull([
+            'success' => true,
+            'message' => $this->message,
+            'result' => $this->result,
+        ]), $this->status, $this->headers, $this->options);
     }
 }

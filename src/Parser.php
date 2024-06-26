@@ -82,7 +82,7 @@
      *
      * @return string
      */
-    public function parseJobInLine($line, $contents)
+    public function parseJobInLine($line, $contents): string
     {
         $line = trim($line);
         // match the line that potentially has the job,
@@ -164,7 +164,7 @@
      *
      * @return string
      */
-    private function parseStringJobSyntax($match, $contents)
+    private function parseStringJobSyntax($match, $contents): string
     {
         $slash = strrpos($match, '\\');
         if ($slash !== false) {
@@ -183,7 +183,7 @@
      *
      * @return string
      */
-    private function parseKeywordJobSyntax($match, $contents)
+    private function parseKeywordJobSyntax($match, $contents): string
     {
         // is it of the form \Full\Name\Space::class?
         // (using full namespace in-line)
@@ -214,7 +214,7 @@
      *
      * @return string
      */
-    private function parseInitJobSyntax($match, $contents)
+    private function parseInitJobSyntax($match, $contents): string
     {
         // remove the 'new ' from the beginning.
         $match = str_replace('new ', '', $match);
@@ -248,7 +248,7 @@
      *
      * @return string
      */
-    private function domainForJob($namespace)
+    private function domainForJob($namespace): string
     {
         preg_match('/Domains\\\([^\\\]*)\\\Jobs/', $namespace, $domain);
 
@@ -270,7 +270,7 @@
      *
      * @return string
      */
-    private function filterJobMatch($match)
+    private function filterJobMatch($match): string
     {
         // we don't want any quotes
         return str_replace(['"', "'"], '', $match);
@@ -288,7 +288,7 @@
      *
      * @return string
      */
-    private function jobSyntaxStyle($match)
+    private function jobSyntaxStyle($match): string
     {
         if (strpos($match, '::class') !== false) {
             $style = self::SYNTAX_KEYWORD;

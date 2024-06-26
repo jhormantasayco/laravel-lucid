@@ -11,8 +11,11 @@ use Illuminate\Validation\Validator as IlluminateValidator;
  */
 class InvalidInputException extends Exception
 {
-    public function __construct($message = '', $code = 0, Exception $previous = null)
-    {
+    public function __construct(
+        public string $message = '',
+        public int $code = 0,
+        Exception $previous = null
+    ){
         if ($message instanceof IlluminateValidator) {
             $message = $message->messages()->all();
         }

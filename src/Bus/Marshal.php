@@ -17,7 +17,7 @@ trait Marshal
      *
      * @return mixed
      */
-    protected function marshal($command, ArrayAccess $source, array $extras = [])
+    protected function marshal(string $command, ArrayAccess $source, array $extras = []): mixed
     {
         $parameters = [];
         
@@ -41,8 +41,8 @@ trait Marshal
      * @return mixed
      * @throws Exception
      */
-    protected function getParameterValueForCommand($command, ArrayAccess $source,
-        ReflectionParameter $parameter, array $extras = [])
+    protected function getParameterValueForCommand(string $command, ArrayAccess $source,
+        ReflectionParameter $parameter, array $extras = []): mixed
     {
         if (array_key_exists($parameter->name, $extras)) {
             return $extras[$parameter->name];

@@ -3,6 +3,7 @@
 namespace Lucid\Validation;
 
 use Lucid\Validation\Validation;
+use Illuminate\Validation\Validator;
 use Lucid\Exceptions\InvalidInputException;
 
 /**
@@ -33,7 +34,7 @@ class Validator
      *
      * @throws \Lucid\Exceptions\InvalidInputException
      */
-    public function validate(array $input, array $rules = [], array $messages = [])
+    public function validate(array $input, array $rules = [], array $messages = []): bool
     {
         $validation = $this->validation($input, $rules, $messages);
 
@@ -54,7 +55,7 @@ class Validator
      *
      * @return \Illuminate\Validation\Validator
      */
-    public function validation(array $input, array $rules = [], array $messages = [])
+    public function validation(array $input, array $rules = [], array $messages = []): Validator
     {
         if (empty($rules)) {
             $rules = $this->rules;

@@ -19,10 +19,10 @@ trait ServesFeatures
      *
      * @return mixed
      */
-    public function serve($feature, $arguments = [])
+    public function serve($feature, $arguments = []): mixed
     {
         event(new FeatureStarted($feature, $arguments));
 
-        return $this->dispatch($this->marshal($feature, new Collection(), $arguments));
+        return $this->dispatchSync($this->marshal($feature, new Collection(), $arguments));
     }
 }
